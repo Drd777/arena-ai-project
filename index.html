@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="app">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2 class="brand">📋 Taskr</h2>
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">
+          <span class="icon-sun">☀️</span>
+          <span class="icon-moon">🌙</span>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#" class="nav-link active">
+          <span class="nav-icon">📝</span> Dashboard
+        </a>
+        <a href="#" class="nav-link">
+          <span class="nav-icon">📊</span> Statistics
+        </a>
+        <a href="#" class="nav-link">
+          <span class="nav-icon">⚙️</span> Settings
+        </a>
+      </nav>
+
+      <!-- Weather Widget -->
+      <div class="weather-widget" id="weather-widget">
+        <div class="weather-loading" id="weather-loading">
+          <div class="spinner"></div>
+          <span>Loading weather…</span>
+        </div>
+        <div class="weather-content" id="weather-content" style="display:none;">
+          <div class="weather-main">
+            <span class="weather-icon" id="weather-icon">☀️</span>
+            <div class="weather-temp" id="weather-temp">--°C</div>
+          </div>
+          <div class="weather-desc" id="weather-desc">--</div>
+          <div class="weather-details">
+            <div class="weather-detail">
+              <span class="detail-label">💧 Humidity</span>
+              <span class="detail-value" id="weather-humidity">--%</span>
+            </div>
+            <div class="weather-detail">
+              <span class="detail-label">💨 Wind</span>
+              <span class="detail-value" id="weather-wind">-- km/h</span>
+            </div>
+          </div>
+          <div class="weather-location" id="weather-location">--</div>
+        </div>
+        <div class="weather-error" id="weather-error" style="display:none;">
+          <span>⚠️</span>
+          <span>Unable to load weather</span>
+          <button id="weather-retry" class="weather-retry-btn">Retry</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+      <header class="main-header">
+        <div>
+          <h1 class="page-title">Task Dashboard</h1>
+          <p class="page-subtitle">Manage your tasks efficiently</p>
+        </div>
+        <div class="header-stats">
+          <div class="stat-card">
+            <span class="stat-number" id="stat-total">0</span>
+            <span class="stat-label">Total</span>
+          </div>
+          <div class="stat-card stat-active">
+            <span class="stat-number" id="stat-active">0</span>
+            <span class="stat-label">Active</span>
+          </div>
+          <div class="stat-card stat-done">
+            <span class="stat-number" id="stat-done">0</span>
+            <span class="stat-label">Done</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Add Task -->
+      <section class="add-task-section">
+        <form id="task-form" class="task-form">
+          <input
+            type="text"
+            id="task-input"
+            class="task-input"
+            placeholder="What needs to be done?"
+            autocomplete="off"
+            required
+          />
+          <select id="task-priority" class="task-priority">
+            <option value="low">🟢 Low</option>
+            <option value="medium" selected>🟡 Medium</option>
+            <option value="high">🔴 High</option>
+          </select>
+          <button type="submit" class="btn-add" id="btn-add">Add Task</button>
+        </form>
+      </section>
+
+      <!-- Filters -->
+      <section class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="active">Active</button>
+        <button class="filter-btn" data-filter="completed">Completed</button>
+        <button class="btn-clear" id="btn-clear-completed">Clear Completed</button>
+      </section>
+
+      <!-- Task List -->
+      <section class="task-list-section">
+        <ul class="task-list" id="task-list">
+          <!-- Tasks rendered here by JS -->
+        </ul>
+        <div class="empty-state" id="empty-state">
+          <span class="empty-icon">✨</span>
+          <p class="empty-title">No tasks yet</p>
+          <p class="empty-subtitle">Add a task above to get started!</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
